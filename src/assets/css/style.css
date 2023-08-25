@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Outfit:wght@400;700&family=Overpass:wght@400;700&family=Poppins:ital,wght@0,200;0,300;0,400;1,200;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Monoton&family=Outfit:wght@400;700&family=Overpass:wght@400;700&family=Poppins:ital,wght@0,200;0,300;0,400;1,200;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200&family=Roboto:wght@100&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #000000;
+}
+
+/* scrollbar.css */
+
+/* Estilos para Webkit (Chrome, Safari, Opera) */
+::-webkit-scrollbar {
+    width: 12px; /* Ancho de la barra de desplazamiento */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #C70039; /* Color del "pulggar" de la barra de desplazamiento */
+    border-radius: 3px; /* Bordes redondeados */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #bf1d4b; /* Color cuando se pasa el ratón por encima */
+    
+  }
+  
+  /* Estilos para Firefox */
+  /* Note: Estos estilos solo funcionarán en versiones anteriores a Firefox 64 */
+  * {
+    scrollbar-color: #C70039 #bf1d4b; /* Color de la barra y el "pulggar" */
+  }
+  
