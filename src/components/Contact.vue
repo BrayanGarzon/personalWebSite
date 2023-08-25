@@ -4,7 +4,7 @@
 
 <template>
 
-    <section><h1 style="color: white;">SECTION PORTFOLIO</h1></section>
+    <section><h1 style="color: white;">SECTION CONTACT</h1></section>
 
 </template>
 

@@ -12,7 +12,7 @@
     #banner{
         width: 100%;
         height: 50px;
-        background-color: #1919195b;
+        background-color: #252525d3;
         color: white;
         display: flex;
         align-items: center;
