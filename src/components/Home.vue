@@ -130,6 +130,7 @@ export default {
       <canvas ref="canvas" class="canvas"></canvas>
     </div>
     <div class="imagenBg">
+      
       <div class="imagenBg-overlay"></div>
       <img src="../assets/img/man.jpg" alt="">
     </div>
@@ -189,7 +190,7 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to left, transparent, #171717); /* Degradado hacia la izquierda */
+    background: linear-gradient(to left, transparent, #000000); /* Degradado hacia la izquierda */
     
   }
   .imagenBg img{

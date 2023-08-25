@@ -50,52 +50,42 @@ export default {
 };
 </script>
 
-
 <template>
-  
-    <nav class="custom-navbar">
+  <nav class="custom-navbar">
+    <div class="navbar-header">
+      <router-link to="/" class="navbar-brand" style="text-decoration: none; color: white;">
+        <h1>DevDynasty</h1>
+      </router-link>
+      <button class="navbar-toggle" @click="toggleMenu" style="color: white;">
+        <i class="fa fa-bars" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff;"></i>
+      </button>
+    </div>
 
+    <div class="navbar-overlay" :class="{ 'show': isMenuOpen}" @click="closeMenu"></div>
 
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#" style="text-decoration: none; color: white;">
-          <router-link to="/" class="h1" style="text-decoration: none; color: white;"><h1>DevDynasty</h1></router-link>
-          
-        </a>
-        <button class="navbar-toggle" @click="toggleMenu" style="color: white;">
-          <i class="fa fa-bars" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff;"></i>
-          
+    <div class="navbar-menu" :class="{ 'show': isMenuOpen, 'smooth-transition': isMenuOpen || isClosing }">
+      <div class="menu-header" style="height: 80px;">
+        <router-link to="/" class="navbar-brand" style="text-decoration: none; color: white;">
+          <h1>DevDynasty</h1>
+        </router-link>
+        <button class="navbar-toggle" @click="toggleMenu">
+          <i id="navbar-toggle-icon" class="fa fa-bars" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff;"></i>
         </button>
       </div>
-
-
-      <div class="navbar-overlay" :class="{ 'show': isMenuOpen}" @click="closeMenu"></div>
-
-      <div class="navbar-menu" :class="{ 'show': isMenuOpen, 'smooth-transition': isMenuOpen || isClosing }">
-        <div class="menu-header" style="height: 80px;">
-          <a class="navbar-brand" href="#" style="text-decoration: none; color: white;">
-            <h1 to="/">DevDynasty</h1>
-          </a>
-          <button class="navbar-toggle" @click="toggleMenu">
-            
-            <i id="navbar-toggle-icon" class="fa fa-bars" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ffffff; "></i>
-          </button>
-        </div>
-        <ul class="menu-list">
-          <li v-for="item in menuItems" :key="item.id">
-
-          <a :href="item.link" @click="closeMenu" @mouseover="showOverlay(item)" @mouseleave="hideOverlay(item)">{{ item.text }}</a>
-          
+      <ul class="menu-list">
+        <li v-for="item in menuItems" :key="item.id">
+          <router-link :to="item.link" @click="closeMenu">
+            <a @mouseover="showOverlay(item)" @mouseleave="hideOverlay(item)">{{ item.text }}</a>
+          </router-link>
           <div class="overlay" :class="{ active: item.showOverlay }">
-              <div v-if="item.showOverlay">{{ item.text }}</div>
+            <div v-if="item.showOverlay">{{ item.text }}</div>
           </div>
         </li>
-        </ul>
-      </div>
+      </ul>
+    </div>
+  </nav>
+</template>
 
-
-    </nav>
-  </template>
-  
   <style scoped>
   .custom-navbar {
     color: white;

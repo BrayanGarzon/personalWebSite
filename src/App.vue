@@ -5,7 +5,7 @@ import { RouterLink, RouterView, useRoute } from 'vue-router'
 import EffectCursor from './components/efectCursor.vue';
 
 // Importa las vistas
-import navbar from './components/navBar.vue'
+import NavBarView from './views/NavBarView.vue'
 import BannerView from './views/BannerView.vue'
 
 // Obtener la ruta actual
@@ -23,7 +23,7 @@ const isHomeRoute = () => route.name === 'home';
     </div>
 
     <!-- Barra de navegación -->
-    <navbar />
+    <NavBarView />
 
     <!-- Mostrar RouterView (contenido de las rutas) -->
     <RouterView />
