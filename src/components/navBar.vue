@@ -82,8 +82,9 @@ export default {
         </div>
         <ul class="menu-list">
           <li v-for="item in menuItems" :key="item.id">
-          <a 
-          :href="item.link" @click="closeMenu" @mouseover="showOverlay(item)" @mouseleave="hideOverlay(item)">{{ item.text }}</a>
+
+          <a :href="item.link" @click="closeMenu" @mouseover="showOverlay(item)" @mouseleave="hideOverlay(item)">{{ item.text }}</a>
+          
           <div class="overlay" :class="{ active: item.showOverlay }">
               <div v-if="item.showOverlay">{{ item.text }}</div>
           </div>
