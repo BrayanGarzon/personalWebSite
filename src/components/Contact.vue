@@ -1,4 +1,6 @@
-<script></script>
+<script>
+
+</script>
 
 
 
@@ -18,7 +20,7 @@
                     <input id="email" type="email" placeholder="Your Email">
                     <input id="asunto" type="text" placeholder="Asunt">
                     <textarea id="texto" rows="4" cols="50" placeholder="Your Message"></textarea>
-                    <Button class="buttonEnviar" type="submit">Enviar</Button>
+                    <component :is="'button'" class="buttonEnviar" type="submit">Enviar</component>
                 </form>
             </div>
             <div class="mediosContact">
@@ -61,43 +63,7 @@
 <style scoped>
 
 
-    /* Media query para responsividad */
-    @media screen and (max-width: 768px) {
 
-section{
-    flex-direction: column;
-}
-.titulos{
-    text-align: center;
-}
-
-.titulos .h3{
-    margin-top: 0px;
-    font-size: 15px;
-}
-section .contenedorFormulario{
-    flex-direction: column;
-    width: auto;
-    margin-top: 0;
-}
-.contenedorFormulario form{
-    width: 100%;
-}
-.contenedorFormulario form input{
-    width: 100%;
-}
-.contenedorFormulario .h3Form{
-    text-align: center;
-    width: 250px;
-    font-size: 20px;
-}
-
-.mediosContact{
-    width: 200px;
-}
-
-
-}
 
     .mediosContact{
         display: flex;
@@ -146,14 +112,12 @@ section .contenedorFormulario{
     section .contenedorFormulario{
         width: 100%;
         height: auto;
-        
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        
     }   
     section .contenedorFormulario .form{
-        width: 60%;
+        width: 700px;
         height: 600px;
         margin: 30px;
         display: flex;
@@ -200,8 +164,7 @@ section .contenedorFormulario{
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        margin-left: 40px;
-        margin-right: 40px;
+        
     }
 
     section .titulos{
@@ -266,6 +229,61 @@ section .contenedorFormulario{
         background: rgb(255, 0, 72);
         
     }
-    
+    /* Estilos para pantallas pequeñas */
+@media (max-width: 767px) {
+    section .titulos .h1{
+        text-align: center;
+    }
+    section .titulos .h3{
+        text-align: center;
+        margin: 0;
+    }
+  section .contenedorFormulario {
+    flex-direction: column;
+  }
+
+  section .contenedorFormulario .form {
+    width: 90%; /* Ancho más grande en pantallas pequeñas */
+    margin: 20px;
+    margin-top: 0;
+  }
+
+  section .contenedorFormulario .mediosContact {
+    width: 90%; /* Ancho más grande en pantallas pequeñas */
+    margin: 20px;
+    height: 500px;
+  }
+
+  .mediosContact .iconos .h3 {
+    font-size: 20px;
+  }
+
+  .mediosContact .iconos .nameIcon {
+    gap: 10px; /* Espacio entre iconos más pequeño */
+  }
+  form{
+    width: 90%;
+  }
+
+  form input,
+  textarea {
+    width: 100%; /* Ancho completo en pantallas pequeñas */
+    padding: 10px 20px;
+    margin: 14px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif, sans-serif;
+    font-size: 18px;
+    background-color: #191919;
+  }
+
+  form .buttonEnviar {
+    width: 100%;
+    font-size: 18px;
+    padding: 6px 20px;/* Espacios más pequeños en el botón */
+  }
+}
 
 </style>
