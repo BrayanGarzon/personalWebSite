@@ -6,13 +6,13 @@
 
     <section>
         <div class="titulos">
-            <h1>Ponte en<strong  style="color: #C70039;"> Contacto</strong></h1>
-            <h3><strong  style="color: #C70039;">Envía</strong> tus comentarios</h3>
+            <h1 class="h1">Ponte en<strong  style="color: #C70039;"> Contacto</strong></h1>
+            <h3 class="h3"><strong  style="color: #C70039;">Envía</strong> tus comentarios</h3>
         </div>
         <div class="contenedorFormulario">
 
             <div class="form">
-                <h3>Envía tu mensaje</h3>
+                <h3 class="h3Form">Envía tu mensaje</h3>
                 <form action="#" >
                     <input id="name" type="text" placeholder="Full Name">
                     <input id="email" type="email" placeholder="Your Email">
@@ -23,7 +23,7 @@
             </div>
             <div class="mediosContact">
                 <div class="iconos">
-                    <h3>Mayor Información</h3>
+                    <h3 class="h3">Mayor Información</h3>
                     <div class="nameIcon">
                         <img src="../assets/img/icon-name.png" alt="">
                         <div class="texto">
@@ -49,7 +49,7 @@
                         <img src="../assets/img/icon-email.png" alt="">
                         <div class="texto">
                             <h6>Telefono</h6>
-                            <p>Correo@correo.com</p>
+                            <p>Correo@gamil.com</p>
                         </div>
                     </div>
                 </div>
@@ -59,13 +59,66 @@
 
 </template>
 <style scoped>
-    .mediosContact .iconos{
+
+
+    /* Media query para responsividad */
+    @media screen and (max-width: 768px) {
+
+section{
+    flex-direction: column;
+}
+.titulos{
+    text-align: center;
+}
+
+.titulos .h3{
+    margin-top: 0px;
+    font-size: 15px;
+}
+section .contenedorFormulario{
+    flex-direction: column;
+    width: auto;
+    margin-top: 0;
+}
+.contenedorFormulario form{
+    width: 100%;
+}
+.contenedorFormulario form input{
+    width: 100%;
+}
+.contenedorFormulario .h3Form{
+    text-align: center;
+    width: 250px;
+    font-size: 20px;
+}
+
+.mediosContact{
+    width: 200px;
+}
+
+
+}
+
+    .mediosContact{
         display: flex;
-        align-items: center;
         justify-content: center;
+        align-items: center;
         flex-direction: column;
         
+    }
+    .mediosContact .iconos{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 50%;
+        
     }   
+    .mediosContact .iconos .h3{
+        color: white;
+        text-align: center;
+        font-size: 25px;
+        z-index: 1;
+    }
     .mediosContact .iconos .nameIcon{
         height: auto;
         padding: 10px;
@@ -75,6 +128,8 @@
         flex-direction: row;
         align-items: center;
         gap: 20px;
+        display: flex;
+        
         
         
     }
@@ -91,8 +146,7 @@
     section .contenedorFormulario{
         width: 100%;
         height: auto;
-        margin-top: 40px;
-        margin-bottom: 35px;
+        
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -129,7 +183,7 @@
         width: 100%;
         height: 100%;
         background-color: #101010; /* Color gris con opacidad */
-        opacity: .5;
+        opacity: .7;
         z-index: 1; /* Asegura que el pseudo-elemento esté encima de la imagen */
     }
     section .contenedorFormulario .form h3{
@@ -213,4 +267,5 @@
         
     }
     
+
 </style>

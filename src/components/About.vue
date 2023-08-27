@@ -18,9 +18,9 @@ export default {
 
         <div class="infoPersonal">
             <div class="textoIzquierdo">
-                <p>Soy un <strong style="color: #C70039;">Web Developer </strong> creativo <br>ubicado en Colombia.</p>
+                <p>Soy <strong style="color: #C70039;">Web Developer </strong> creativo <br>ubicado en Colombia.</p>
 
-                <p class="descripcion">Con 20 años de experiencia como desarrollador Web profesional, he adquirido las habilidades y conocimientos necesarios para que tu proyecto sea un éxito. Disfruto cada paso mientras trabajo.
+                <p class="descripcion">Con experiencia como desarrollador Web, ilustrador y editor videografico. He adquirido las habilidades y conocimientos necesarios para que tus proyecto sea un éxito. Disfruto cada paso mientras trabajo.
 
                 </p>
                 
@@ -54,31 +54,31 @@ export default {
                         <img src="../assets/img/coding.png" alt="">
                     </div>
                     <div class="transicion"></div>
-                    <h2 class="subtitulo">Web Designing</h2>
-                    <p class="parrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod quibusdam possimus</p>
+                    <h2 class="subtitulo">Diseño Web</h2>
+                    <p class="parrafo">Transformando ideas en experiencias en línea a través del código. Impulsando la innovación con interactividad y funcionalidad.</p>
                 </div>
                 <div class="servicio">
                     <div class="icono">
                         <img src="../assets/img/insta.png" alt="">
                     </div>
                     <div class="transicion"></div>
-                    <h2 class="subtitulo">Social Media</h2>
-                    <p class="parrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod quibusdam possimus</p>
+                    <h2 class="subtitulo">Desarrollo de Software</h2>
+                    <p class="parrafo">Transformando ideas en soluciones a través del código, impulsando la innovación con resultados tangibles.</p>
                 </div>
                 <div class="servicio">
                     <div class="icono">
                         <img src="../assets/img/bulb.png" alt="">
                     </div>
                     <div class="transicion"></div>
-                    <h2 class="subtitulo">Creative Design</h2>
-                    <p class="parrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod quibusdam possimus</p>
+                    <h2 class="subtitulo">Diseño Grafico</h2>
+                    <p class="parrafo">Transformando conceptos en imágenes impactantes. Mi pasión es visualizar tu visión y convertirla en diseño tangible y cautivador.</p>
                 </div>
             </div>
             
         </div>
 
         <div class="skills">
-            <h1>Mis<strong  style="color: #C70039;"> Habilidades</strong></h1>
+            <h1 class="h1">Mis<strong  style="color: #C70039;"> Habilidades</strong></h1>
 
             <div class="iconosHabilidades">
                 <div class="iconosContainer">
@@ -411,6 +411,97 @@ export default {
     padding: 0;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+/* Media query for responsiveness */
+@media screen and (max-width: 768px) {
+  section {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  section .titulos h1 {
+    font-size: 55px;
+  }
+
+  section .titulos h3 {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 0;
+  }
+
+  section .infoPersonal {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+  }
+
+  section .infoPersonal .textoIzquierdo {
+    width: 100%;
+  }
+
+  section .infoPersonal .textoIzquierdo p {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  section .infoPersonal .textoIzquierdo .descripcion {
+    font-size: 14px;
+  }
+
+  .svg-wrapper {
+    width: 120px;
+  }
+
+  .imagen .image {
+    width: 300px;
+    height: 300px;
+  }
+
+  .services .tarjetaServicios {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .services .tarjetaServicios .servicio {
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+
+  .services .tarjetaServicios .icono {
+    width: 80px;
+    height: 80px;
+  }
+
+  .services .tarjetaServicios .subtitulo {
+    font-size: 28px;
+  }
+
+  .services .tarjetaServicios .parrafo {
+    font-size: 14px;
+  }
+
+  .skills .iconosHabilidades .iconosContainer {
+    width: calc(45% - 30px);
+    height: 120px;
+    margin: 10px;
+  }
+
+  .skills .iconosHabilidades .iconosContainer i {
+    font-size: 50px;
+  }
+
+  .skills .iconosHabilidades .iconosContainer p {
+    font-size: 12px;
+  }
+  .skills .h1{
+    font-size: 40px;
+    text-align: center;
+  }
 }
 
     

@@ -136,18 +136,31 @@ export default {
     </div>
     <div class="cuerpo">
       <div class="redes">
-        <i id="whp" class="fa-brands fa-whatsapp" ></i>
-        <i id="gith" class="fa-brands fa-github"></i>
-        <i id="fcbk" class="fa-brands fa-facebook"></i>
-        <i id="link" class="fa-brands fa-linkedin"></i>
+        <a href="https://wa.link/e7gthx" target="_blank" style="text-decoration: none; color: white;">
+          <i id="whp" class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="https://github.com/BrayanGarzon" target="_blank" style="text-decoration: none; color: white;">
+          <i id="gith" class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.facebook.com/brayan.garzon.33234/" target="_blank" style="text-decoration: none; color: white;">
+          <i id="fcbk" class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/brayan-garz%C3%B3n-256475209" target="_blank" style="text-decoration: none; color: white;">
+          <i id="link" class="fa-brands fa-linkedin"></i>
+        </a>
+        
+        
+        
       </div>
       <div class="textoWrite">
         <h1><strong style="color: #C70039;">Brayan</strong> Garzón</h1>
         <h3 class="subtitulo" ref="subtitulo">Soy un <span :style="{'color': subtituloColors[subtituloIndex]}">{{ currentWord }}</span></h3>
       </div>
       <div class="logoContac">
-        <i id="telegram" class="fa-brands fa-telegram"></i>
-        <i id="email" class="fa-solid fa-envelope"></i>
+        <a href="mailto:destroyergarzon@gmail.com" target="_blank" style="text-decoration: none; color: white;">
+          <i id="email" class="fa-solid fa-envelope"></i>
+        </a>
+        
       </div>
     </div>
   </section>
