@@ -132,7 +132,7 @@ export default {
     <div class="imagenBg">
       
       <div class="imagenBg-overlay"></div>
-      <img src="../assets/img/man.jpg" alt="">
+      <img src="../assets/img/man.png" alt="">
     </div>
     <div class="cuerpo">
       <div class="redes">
@@ -203,7 +203,7 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to left, transparent, #000000); /* Degradado hacia la izquierda */
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.3), #000000); /* Degradado hacia la izquierda */
     
   }
   .imagenBg img{
