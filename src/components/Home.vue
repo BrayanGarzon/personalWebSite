@@ -203,7 +203,7 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to left, rgba(0, 0, 0, 0.3), #000000); /* Degradado hacia la izquierda */
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.322), #00000088); /* Degradado hacia la izquierda */
     
   }
   .imagenBg img{
