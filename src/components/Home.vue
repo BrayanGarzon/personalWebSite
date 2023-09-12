@@ -11,7 +11,8 @@ export default {
     };
   },
   mounted() {
-        this.resizeCanvas();
+    
+    this.resizeCanvas();
     window.addEventListener("resize", this.resizeCanvas);
     const canvas = this.$refs.canvas;
     const ctx = canvas.getContext("2d");
@@ -80,11 +81,11 @@ export default {
     window.removeEventListener("resize", this.resizeCanvas);
   },
   methods: {
-        resizeCanvas() {
-      const canvas = this.$refs.canvas;
-      canvas.width = this.$refs.canvasOverlay.clientWidth;
-      canvas.height = this.$refs.canvasOverlay.clientHeight;
-          },
+      resizeCanvas() {
+        const canvas = this.$refs.canvas;
+        canvas.width = this.$refs.canvasOverlay.clientWidth;
+        canvas.height = this.$refs.canvasOverlay.clientHeight;
+      },
 
     animateSubtitulo() {
       const word = this.subtituloWords[this.subtituloIndex];
