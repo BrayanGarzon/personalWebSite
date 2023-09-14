@@ -1,33 +1,64 @@
 <script>
 import axios from 'axios';
 
-export default{
-    data(){
-        return{
-            fields: [
-                {key: 'title', label: 'Titulo'},
-                {key: 'description', label: 'Descrición'},
-                {key: 'action', label: 'Accaión'}
-            ],
-            publicaciones: []
-        }
-    },
-    methods: {
-        getPublicacion (){
-            const path = 'http://localhost:8000/myApp/v1.0/Publicacion/'
-            axios.get(path).then((response)=>{
-                this.publicaciones = response.data  
-            })
-            .catch((error)=>{
-                console.log(error)
-            })
-        }
-    },
-    created(){
-        this.getPublicacion()
+export default {
+  data() {
+    return {
+      publicaciones: []
     }
+  },
+  methods: {
+    // Función para asignar clases de iconos según el framework_nombre
+    getIconClass(frameworkNombre) {
+      switch (frameworkNombre) {
+        case 'Python':
+          return 'fab fa-python'; // Clase del icono para Python
+        case 'Django':
+          return 'fab fa-django'; // Clase del icono para Django (por ejemplo)
+        // Agrega más casos según sea necesario
+        case 'Vue':
+          return 'fab fa-vuejs';
+          
+          
+        default:
+          return 'fas fa-question'; // Clase del icono por defecto o desconocido
+      }
+    },
+    formatFecha(fecha) {
+      console.log(fecha)
+      
+      const date = new Date(fecha);
+      const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+      const dia = date.getDate();
+      const mes = meses[date.getMonth()];
+      const año = date.getFullYear().toString().slice(-2);
+      return `${dia+1} ${mes}, ${año}`;
+    },
+    getPublicacion() {
+      const path = 'http://localhost:8000/myApp/v1.0/Publicacion/';
+      axios.get(path)
+        .then((response) => {
+          // Formatea la fecha antes de asignarla a publicaciones
+          this.publicaciones = response.data.map((item) => ({
+            ...item,
+            fechaPublicacn: this.formatFecha(item.fechaPublicacn)
+          }));
+           // Ordena las publicaciones por fecha (de la más reciente a la más antigua)
+           this.publicaciones.sort((a, b) => {
+            const dateA = new Date(a.fechaPublicacn);
+            const dateB = new Date(b.fechaPublicacn);
+            return dateB - dateA;
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  },
+  created() {
+    this.getPublicacion();
+  }
 }
-
 </script>
 
 
@@ -50,20 +81,25 @@ export default{
         <div class="containerCards">
 
             <div class="card"  v-for="publicacion in publicaciones" :key="publicacion.id" >
-                <img :src="publicacion.imagen" alt="Imagen de la tarjeta">
-                <div class="card-header">
-                    <h2>{{ publicacion.titulo }}</h2>
+                <div class="imagen">
+                    <img :src="publicacion.imagen" alt="Imagen de la tarjeta">
+                    <div class="overlay">
+                        <p class="fecha">{{ publicacion.fechaPublicacn }}</p>
+                        
+                        
+                    </div>
                 </div>
+                
+                <div class="card-header">
+                    <h4>{{ publicacion.titulo }}</h4>
+                </div>
+
+                
                 <div class="card-content">
                     <p>{{ publicacion.descripcion }}</p>
+                    <i :class="getIconClass(publicacion.framework_nombre)"></i>
                 </div>
-                <div class="date">
-                    
-
-                    <p>{{ publicacion.fechaPublicacn }}</p>
-                    <p>{{ publicacion.categoria_nombre }}</p>
-                    <p>{{ publicacion.framework_nombre }}</p>
-                </div>
+               
             
             </div>
             
@@ -112,6 +148,7 @@ export default{
         font-family: 'Roboto', sans-serif;
         margin: 0;
         padding: 0;
+        margin-top: 5px;
     }
 
 
@@ -120,40 +157,123 @@ export default{
         grid-template-columns: repeat(3, 1fr); /* Crea 3 columnas de igual tamaño */
         gap: 20px; /* Espacio entre las tarjetas */
         width: 100%;
-        
     }
 
 
     
 /* Estilo base para la tarjeta */
-.card {
-      width: 400px;
-      background-color: #ffffff;
-      border: 1px solid #e1e1e1;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      margin: 20px;
-      font-family: Arial, sans-serif;
+    .card {
+        width: 420px;
+        height: 420px;
+        background-color: #191919;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 20px;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        justify-self: center;
+        
     }
 
+
     /* Estilo para la imagen de la tarjeta */
-    .card img {
-      width: 100%;
-      height: auto;
+
+    .card .imagen {
+        position: relative;
+        height: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        max-width: 100%; /* Limita el ancho máximo del contenedor */
+        max-height: 100%; /* Limita la altura máxima del contenedor */
+    }
+    .card .imagen img {
+        object-fit: cover; /* Mantén la relación de aspecto y cubre todo el espacio */
+        width: 100%; /* La imagen ocupará el 100% del ancho del contenedor .imagen */
+        height: 100%; /* La imagen ocupará el 100% del alto del contenedor .imagen */
+ 
+    }
+    .card .imagen .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        color: white;
+        width: 100%;
+        box-sizing: border-box; /* Evita el desbordamiento del párrafo */
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .card .imagen .overlay .fecha, .categoria{
+      background-color: #C70039;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card .imagen .overlay .fecha{
+      width: 90px;
+      height: 30px;
+    }
+    .card .imagen .overlay .categoria{
+      width: 90px;
+      height: 30px;
     }
 
     /* Estilo para el encabezado de la tarjeta */
     .card-header {
-      padding: 20px;
+      width: 100%;
+      height: 18%;
       text-align: center;
-      background-color: #f1f1f1;
-      color: #333;
+      background-color: #191919;
+      color: white;
+      font-size: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+    }
+    .card-header h4{
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
     }
 
-    /* Estilo para el contenido de la tarjeta */
+
     .card-content {
-      padding: 20px;
+      
+      height: 0; /* Inicialmente, el contenido está oculto */
+      overflow: hidden;
+      transition: height 0.8s ease-in-out, opacity 0.5s ease-in-out; /* Transición suave y lenta */
+      opacity: 0; /* Inicialmente, el contenido está completamente transparente */
+      transform: translateY(-100%); /* Empuja el contenido hacia arriba al inicio */
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
+    .card-content p{
+      margin: 10px;
+    }
+
+    /* Cambia el estilo cuando el cursor pasa por encima de la tarjeta */
+    .card:hover .card-content {
+      margin-top: -30px;
+      height: 100%; /* Ajusta esta altura para mostrar todo el contenido */
+      opacity: 1; /* Hace que el contenido sea completamente visible */
+      transition: height 0.8s ease-in-out, opacity 0.8s ease-in-out, transform 0.8s ease-in-out; /* Aumenta la duración de la transición para hacerla más lenta y suave */
+      transform: translateY(0); /* Establece la transformación solo cuando se coloca el cursor */
+    }
+
+    /* Aplica la transformación para empujar la imagen hacia arriba cuando el contenido está oculto */
+    .card-content:not(:hover) {
+      transition: height 0.8s ease-in-out, opacity 0.8s ease-in-out, transform 0.8s ease-in-out; /* Aumenta la duración de la transición para hacerla más lenta y suave */
+    }
+
 
 </style>
