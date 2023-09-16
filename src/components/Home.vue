@@ -5,7 +5,7 @@ export default {
   data() {
     return {
       subtituloIndex: 0,
-      subtituloWords: ["Developer.", "Programer.", "Designer."],
+      subtituloWords: ["Junior Developer.", "Programer.", "Designer."],
       currentWord: "",
       subtituloColors: ["#FF5733", "#33FF6F", "#339CFF"], // Colores para cada palabra
     };
@@ -155,7 +155,7 @@ export default {
       </div>
       <div class="textoWrite">
         <h1><strong style="color: #C70039;">Brayan</strong> Garzón</h1>
-        <h3 class="subtitulo" ref="subtitulo">Soy un <span :style="{'color': subtituloColors[subtituloIndex]}">{{ currentWord }}</span></h3>
+        <h3 class="subtitulo" ref="subtitulo">Soy <span :style="{'color': subtituloColors[subtituloIndex]}">{{ currentWord }}</span></h3>
       </div>
       <div class="logoContac">
         <a href="mailto:destroyergarzon@gmail.com" target="_blank" style="text-decoration: none; color: white;">

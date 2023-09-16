@@ -55,7 +55,7 @@ export default {
                     </div>
                     <div class="transicion"></div>
                     <h2 class="subtitulo">Diseño Web</h2>
-                    <p class="parrafo">Transformando ideas en experiencias en línea a través del código. Impulsando la innovación con interactividad y funcionalidad.</p>
+                    <p class="parrafo" >Transformando ideas en experiencias en línea a través del código. Impulsando la innovación con interactividad y funcionalidad.</p>
                 </div>
                 <div class="servicio">
                     <div class="icono">
@@ -63,7 +63,7 @@ export default {
                     </div>
                     <div class="transicion"></div>
                     <h2 class="subtitulo">Desarrollo de Software</h2>
-                    <p class="parrafo">Transformando ideas en soluciones a través del código, impulsando la innovación con resultados tangibles.</p>
+                    <p class="parrafo" >Transformando ideas en soluciones a través del código, impulsando la innovación con resultados tangibles.</p>
                 </div>
                 <div class="servicio">
                     <div class="icono">
@@ -71,7 +71,7 @@ export default {
                     </div>
                     <div class="transicion"></div>
                     <h2 class="subtitulo">Diseño Grafico</h2>
-                    <p class="parrafo">Transformando conceptos en imágenes impactantes. Mi pasión es visualizar tu visión y convertirla en diseño tangible y cautivador.</p>
+                    <p class="parrafo" >Transformando conceptos en imágenes impactantes. Mi pasión es visualizar tu visión y convertirla en diseño tangible y cautivador.</p>
                 </div>
             </div>
             
@@ -346,9 +346,9 @@ export default {
         z-index: 1;
     }
     .services .tarjetaServicios .parrafo{
-        padding: 10px;
-        text-align: center;
-        font-weight: 200;
+        padding: 20px;
+        text-align: justify;
+        font-weight: 100;
         font-size: 18px;
         opacity: .8;
         color: white;

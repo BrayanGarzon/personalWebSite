@@ -8,24 +8,50 @@ export default {
     }
   },
   methods: {
-    // Función para asignar clases de iconos según el framework_nombre
-    getIconClass(frameworkNombre) {
+      // Función para asignar clases de iconos según los framework_nombre
+    getIconClasses(frameworkNombre) {
       switch (frameworkNombre) {
         case 'Python':
           return 'fab fa-python'; // Clase del icono para Python
         case 'Django':
-          return 'fab fa-django'; // Clase del icono para Django (por ejemplo)
-        // Agrega más casos según sea necesario
-        case 'Vue':
-          return 'fab fa-vuejs';
-          
-          
+          return 'fab fa-django'; // Clase del icono para Django
+        case 'Vue.js':
+          return 'fab fa-vuejs'; // Clase del icono para Vue.js
+        case 'CSS':
+          return 'fab fa-css3';
+        case 'Html':
+          return 'fab fa-html5';
+        case 'PostgreSQL':
+          return 'fas fa-database';
+        case 'JavaScript':
+          return 'fab fa-js';
+        // Agrega más casos según sea necesario para otros frameworks
         default:
           return 'fas fa-question'; // Clase del icono por defecto o desconocido
       }
     },
+    getIconColor(frameworkNombre) {
+      switch (frameworkNombre) {
+        case 'Python':
+          return '#3572A5'; // Color para Python
+        case 'Django':
+          return '#0C4B33'; // Color para Django
+        case 'Vue.js':
+          return '#42b883'; // Color para Vue.js
+        case 'CSS':
+          return '#1572B6'; // Color para CSS
+        case 'Html':
+          return '#E34F26'; // Color para HTML
+        case 'PostgreSQL':
+          return '#336791'; // Color para PostgreSQL
+        case 'JavaScript':
+          return '#F7DF1E'; // Color para JavaScript
+        default:
+          return '#000'; // Color predeterminado
+      }
+    },
+ 
     formatFecha(fecha) {
-      console.log(fecha)
       
       const date = new Date(fecha);
       const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
@@ -85,7 +111,9 @@ export default {
                     <img :src="publicacion.imagen" alt="Imagen de la tarjeta">
                     <div class="overlay">
                         <p class="fecha">{{ publicacion.fechaPublicacn }}</p>
-                        
+                        <a :href="publicacion.url" target="_blank" class="url">
+                          <i class="fas fa-external-link-alt"></i>
+                        </a>
                         
                     </div>
                 </div>
@@ -96,9 +124,19 @@ export default {
 
                 
                 <div class="card-content">
-                    <p>{{ publicacion.descripcion }}</p>
-                    <i :class="getIconClass(publicacion.framework_nombre)"></i>
+                  <p>{{ publicacion.descripcion }}</p>
+
+                  <div class="contenedor">
+                    <div class="iconosFrameworks" v-for="frameworkNombre in publicacion.frameworks_nombre" :key="frameworkNombre">
+                      
+                    <i :class="getIconClasses(frameworkNombre)" :style="{ color: getIconColor(frameworkNombre) }"></i>
+
+                  </div>
+                  </div>
+                  
                 </div>
+
+
                
             
             </div>
@@ -152,18 +190,17 @@ export default {
     }
 
 
-    .containerCards{
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* Crea 3 columnas de igual tamaño */
-        gap: 20px; /* Espacio entre las tarjetas */
-        width: 100%;
-    }
+    .containerCards {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las tarjetas se envuelvan cuando no haya espacio suficiente */
+    justify-content: space-between; /* Distribuye las tarjetas de manera uniforme */
+  }
 
 
     
 /* Estilo base para la tarjeta */
     .card {
-        width: 420px;
+        
         height: 420px;
         background-color: #191919;
         border-radius: 10px;
@@ -174,11 +211,12 @@ export default {
         justify-content: center;
         flex-direction: column;
         justify-self: center;
+        width: calc(30% - 20px); /* Para mostrar 3 tarjetas por fila con un espacio de 20px entre ellas */
+        margin-bottom: 20px; /* Espacio entre filas de tarjetas */
         
     }
 
 
-    /* Estilo para la imagen de la tarjeta */
 
     .card .imagen {
         position: relative;
@@ -207,6 +245,13 @@ export default {
         flex-direction: row;
         justify-content: space-between;
     }
+    .overlay .url{
+      margin: 0;
+      padding: 0;
+      text-decoration: none;
+      color: white;
+      margin-right: 10px;
+    }
     .card .imagen .overlay .fecha, .categoria{
       background-color: #C70039;
       margin: 0;
@@ -214,7 +259,7 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
-    }
+    } 
     .card .imagen .overlay .fecha{
       width: 90px;
       height: 30px;
@@ -250,7 +295,7 @@ export default {
       overflow: hidden;
       transition: height 0.8s ease-in-out, opacity 0.5s ease-in-out; /* Transición suave y lenta */
       opacity: 0; /* Inicialmente, el contenido está completamente transparente */
-      transform: translateY(-100%); /* Empuja el contenido hacia arriba al inicio */
+      transform: translateY(100%); /* Empuja el contenido hacia arriba al inicio */
       color: white;
       display: flex;
       justify-content: center;
@@ -259,11 +304,13 @@ export default {
     }
     .card-content p{
       margin: 10px;
+      text-align: justify;
+      font-family: Arial, sans-serif;
     }
 
     /* Cambia el estilo cuando el cursor pasa por encima de la tarjeta */
     .card:hover .card-content {
-      margin-top: -30px;
+      margin-top: -25px;
       height: 100%; /* Ajusta esta altura para mostrar todo el contenido */
       opacity: 1; /* Hace que el contenido sea completamente visible */
       transition: height 0.8s ease-in-out, opacity 0.8s ease-in-out, transform 0.8s ease-in-out; /* Aumenta la duración de la transición para hacerla más lenta y suave */
@@ -273,7 +320,48 @@ export default {
     /* Aplica la transformación para empujar la imagen hacia arriba cuando el contenido está oculto */
     .card-content:not(:hover) {
       transition: height 0.8s ease-in-out, opacity 0.8s ease-in-out, transform 0.8s ease-in-out; /* Aumenta la duración de la transición para hacerla más lenta y suave */
+      transform: translateY(100%);
     }
 
 
+
+    .card-content .contenedor{
+      display: flex; 
+      flex-direction: row;
+    }
+    .card-content .iconosFrameworks{
+      margin-top: 15px;
+      font-size: 30px;
+      display: flex;
+      flex-direction: row;
+      width: auto;
+    }
+    .card-content .iconosFrameworks i{
+      margin: 3px;
+      display: flex;
+      flex-direction: row;
+    }
+ 
+
+
+     /* Media Query para pantallas medianas */
+  @media (max-width: 1200px) {
+    .card {
+      width: calc(40% - 30px); /* Para mostrar 2 tarjetas por fila en pantallas medianas */
+    }
+  }
+
+  /* Media Query para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .card {
+      width: 100%; /* Para mostrar 1 tarjeta por fila en pantallas pequeñas */
+    }
+    .card-content p{
+      font-size: 13px;
+      margin: 10px;
+      text-align: justify;
+      font-family: Arial, sans-serif;
+    }
+  }
+  
 </style>
