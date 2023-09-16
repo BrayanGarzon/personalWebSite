@@ -111,7 +111,7 @@ export default {
                     <img :src="publicacion.imagen" alt="Imagen de la tarjeta">
                     <div class="overlay">
                         <p class="fecha">{{ publicacion.fechaPublicacn }}</p>
-                        <a :href="publicacion.url" target="_blank" class="url">
+                        <a v-if="publicacion.url" :href="publicacion.url" target="_blank" class="url">
                           <i class="fas fa-external-link-alt"></i>
                         </a>
                         
