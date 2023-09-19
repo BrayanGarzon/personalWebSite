@@ -18,7 +18,7 @@ export default {
     const ctx = canvas.getContext("2d");
     
     const points = [];
-    const numPoints = 60;
+    const numPoints = 40;
 
     for (let i = 0; i < numPoints; i++) {
       points.push({

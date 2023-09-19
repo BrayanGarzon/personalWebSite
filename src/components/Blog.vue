@@ -128,6 +128,7 @@ export default {
 
                   <div class="contenedor">
                     <div class="iconosFrameworks" v-for="frameworkNombre in publicacion.frameworks_nombre" :key="frameworkNombre">
+      
                       
                     <i :class="getIconClasses(frameworkNombre)" :style="{ color: getIconColor(frameworkNombre) }"></i>
 
@@ -174,7 +175,7 @@ export default {
     }
     .titulos h2{
         color: white;
-        font-size: 40px;
+        font-size: 50px;
         font-family: 'Roboto', sans-serif;
         margin: 0;
         padding: 0;

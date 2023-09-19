@@ -3,13 +3,14 @@
 
 <template>
     <div id="banner">
-        <p>&copy; Brayan Garzón 2023</p>
+        <p>&copy; Brayan Garzón {{ new Date().getFullYear() }}</p> <!--toma eñ año actual para el copy-->
     </div>
 </template>
 
 
 <style scoped>
     #banner{
+        
         width: 100%;
         height: 50px;
         background-color: #252525d3;
