@@ -130,9 +130,9 @@ export default {
                     <div class="iconosFrameworks" v-for="frameworkNombre in publicacion.frameworks_nombre" :key="frameworkNombre">
       
                       
-                    <i :class="getIconClasses(frameworkNombre)" :style="{ color: getIconColor(frameworkNombre) }"></i>
+                      <i :class="getIconClasses(frameworkNombre)" :style="{ color: getIconColor(frameworkNombre) }"></i>
 
-                  </div>
+                    </div>
                   </div>
                   
                 </div>

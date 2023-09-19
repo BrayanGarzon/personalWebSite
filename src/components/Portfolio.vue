@@ -103,9 +103,33 @@ export default {
             </div>
 
             <div class="portfolio-text">
-                <h1 style="color: rgb(112, 9, 9);">{{ proyecto.titulo }}</h1>
-                <p style="color: #C70039;  text-align: justify;">{{ proyecto.descripcion }}</p>
+                <h1>{{ proyecto.titulo }}</h1>
+                <p>{{ proyecto.descripcion }}</p>
+                
+
+                <div class="contenedorIconos">
+                    <div class="iconosFrameworks" v-for="frameworkNombre in proyecto.frameworks_nombre" :key="frameworkNombre">
+      
+                      
+                      <i :class="getIconClasses(frameworkNombre)" :style="{ color: getIconColor(frameworkNombre) }"></i>
+
+                    </div>
+                </div>
+                <div class="position">
+                    
+                    <a :href="proyecto.url" class="svg-wrapper" target="_blank" style="width: 200px;">
+                    <svg height="40" width="150">
+                        <rect id="shape" height="40" width="150" />
+                        <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="button-text">
+                        <tspan class="spot"></tspan>
+                        Ver Proyecto
+                        </text>
+                    </svg>
+                    </a>
+                </div>
             </div>
+            
+            
 
         </div>
        
@@ -160,12 +184,9 @@ section{
         padding-bottom: 40px;
     }
     .contenedor .portfolio-imagen{
-        width: 40%;
-        max-height: 450px;
-        background-color: aqua;
+        width: 600px;
+        height: 600px;
         overflow: hidden;
-        max-width: 100%; /* Limita el ancho máximo del contenedor */
-        max-height: 100%; /* Limita la altura máxima del contenedor */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -180,23 +201,142 @@ section{
     }
     .contenedor .portfolio-text{
         width: 40%;
-        padding-left: 1%;
         margin: 1%;
-        margin-left: -40px;
-        margin-top: 160px;
+        margin-left: -50px;
+        margin-top: 130px;
         z-index: 3;
         opacity: 1;
         padding-top: 10px;
         padding-bottom: 10px;
-        background-color: aliceblue;
+        background-color: #191919;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        
+        font-family: Arial, sans-serif;
     }
     
-    .contenedor .portfolio-text p{
-        margin: 10px;
+    .contenedor .portfolio-text h1{
+        
+        font-family: Arial, sans-serif;
+        color: white;
+        text-align: justify;
     }
+    .contenedor .portfolio-text p{
+        margin-left: 15px;
+        margin-right: 15px;
+        font-family: Arial, sans-serif;
+        color: white;
+        text-align: justify;
+    }
+
+
+
+
+
+    .portfolio-text .contenedorIconos{
+      display: flex; 
+      flex-direction: row;
+      margin-bottom: 25px
+    }
+    .portfolio-text .iconosFrameworks{
+      margin-top: 10px;
+      font-size: 30px;
+      display: flex;
+      flex-direction: row;
+      width: auto;
+    }
+    .portfolio-text .iconosFrameworks i{
+      margin: 3px;
+      display: flex;
+      flex-direction: row;
+    }
+
+
+    
+    .position {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
+    }
+
+    .spot {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    .svg-wrapper {
+        margin-top: 0;
+        position: relative;
+        width: 150px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 3px;
+        margin-left: 5px;
+        margin-right: 5px;
+        
+    }
+
+    #shape {
+        stroke-width: 6px;
+        fill: transparent;
+        stroke: #C70039;
+        stroke-dasharray: 85 400;
+        stroke-dashoffset: -220;
+        transition: 1s all ease;
+        
+    }
+
+    .svg-wrapper:hover #shape {
+        stroke-dasharray: 50 0;
+        stroke-width: 3px;
+        stroke-dashoffset: 0;
+        stroke: #C70039;
+        
+    }
+    .button-text {
+        fill: white;
+        font-size: 18px;
+        font-family: 'Roboto', sans-serif;
+        cursor: pointer;
+    }
+
+
+    /* Estilos para pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    .contenedor {
+        flex-direction: column; /* Cambia la dirección a columna en pantallas pequeñas */
+        align-items: center; /* Centra los elementos en el eje X */
+        padding: 20px; /* Agrega espaciado en pantallas pequeñas */
+    }
+
+    .titulos{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .contenedor .portfolio-imagen{
+      width: 90%;
+      height: auto;
+    }
+    .contenedor .portfolio-imagen img{
+      width: 100%;
+    }
+
+    .contenedor .portfolio-text {
+      width: 90%;
+      margin: 0;
+      
+      margin-top: 0px;
+      z-index: -3;
+    }
+}
+
+
 </style>
