@@ -61,7 +61,7 @@ export default {
       return `${dia+1} ${mes}, ${año}`;
     },
     getProyecto() {
-      const path = 'http://localhost:8000/myApp/v1.0/Proyectos/';
+      const path = 'https://django-backend-app.onrender.com/myApp/v1.0/Proyectos/';
       axios.get(path)
         .then((response) => {
           // Formatea la fecha antes de asignarla a publicaciones
