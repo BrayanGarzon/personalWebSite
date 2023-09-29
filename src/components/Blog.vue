@@ -135,23 +135,12 @@ export default {
                     </div>
                   </div>
                   
-                </div>
-
-
-               
-            
+                </div> 
             </div>
             
         </div>
 
-        
-
-       
-    
-    
-    
     </section>
-   
 
 </template>
 
@@ -164,6 +153,7 @@ export default {
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        height: calc(100vh - 120px);
     }
 
     .titulos{
