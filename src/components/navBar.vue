@@ -10,7 +10,7 @@ export default {
         { id: 1, text: 'HOME', link: '/', showOverlay: false },
         { id: 2, text: 'ABOUT', link: '/About', showOverlay: false },
         { id: 3, text: 'BLOG', link: '/Blog', showOverlay: false },
-        { id: 4, text: 'PORTFOLIO',link: '/Portfolio', showOverlay: false },
+        //{ id: 4, text: 'PORTFOLIO',link: '/Portfolio', showOverlay: false },
         { id: 5, text: 'CONTACT',link: '/Contact', showOverlay: false },
       ],
     };

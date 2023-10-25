@@ -1,6 +1,6 @@
 <script>
 import axios from 'axios';
-
+/* 
 export default {
   data() {
     return {
@@ -85,6 +85,88 @@ export default {
     this.getPublicacion();
   }
 }
+*/
+export default {
+  data() {
+    return {
+      starredRepos: [],
+      customDescriptions: {},
+      framework: 'default'
+    };
+  
+  },
+  methods: {
+    getIconClasses(frameworkNombre) {
+      switch (frameworkNombre) {
+        case 'Python':
+          return 'fab fa-python';
+        case 'Django':
+          return 'fab fa-django';
+        case 'Vue.js':
+          return 'fab fa-vuejs';
+        case 'CSS':
+          return 'fab fa-css3';
+        case 'Html':
+          return 'fab fa-html5';
+        case 'PostgreSQL':
+          return 'fas fa-database';
+        case 'JavaScript':
+          return 'fab fa-js';
+        default:
+          return 'fas fa-question';
+      }
+    },
+    getIconColor(frameworkNombre) {
+      switch (frameworkNombre) {
+        case 'Python':
+          return '#3572A5'; // Color para Python
+        case 'Django':
+          return '#0C4B33'; // Color para Django
+        case 'Vue':
+          return '#42b883'; // Color para Vue.js
+        case 'CSS':
+          return '#1572B6'; // Color para CSS
+        case 'Html':
+          return '#E34F26'; // Color para HTML
+        case 'PostgreSQL':
+          return '#336791'; // Color para PostgreSQL
+        case 'JavaScript':
+          return '#F7DF1E'; // Color para JavaScript
+        default:
+          return '#000'; // Color predeterminado
+      }
+    },
+  },
+ 
+
+  created() {
+    // Realiza una llamada a la API de GitHub para obtener tus repositorios
+    axios.get('https://api.github.com/users/BrayanGarzon/repos')
+      .then(response => {
+        this.starredRepos = response.data.filter(repo => repo.stargazers_count > 0);
+
+        // Para cada repositorio, obtén el contenido del archivo description.json
+        this.starredRepos.forEach(repo => {
+          axios.get(`https://raw.githubusercontent.com/BrayanGarzon/${repo.name}/main/description.json`)
+            .then(response => {
+              this.customDescriptions[repo.name] = response.data; // Almacena el contenido en customDescri  ptions
+              
+              
+            })
+            .catch(error => {
+              console.error('Error al obtener description.json de', repo.name, error, 'no have file description.js');
+            });
+        });
+      })
+      .catch(error => {
+        console.error('Error al obtener repositorios de GitHub', error);
+      });
+  },
+};
+
+
+
+
 </script>
 
 
@@ -105,7 +187,7 @@ export default {
 
 
         <div class="containerCards">
-
+          <!--
             <div class="card"  v-for="publicacion in publicaciones" :key="publicacion.id" >
                 <div class="imagen">
                     <img :src="publicacion.imagen" alt="Imagen de la tarjeta">
@@ -137,6 +219,86 @@ export default {
                   
                 </div> 
             </div>
+            
+
+            <div>
+              <h1 style="color: white;">Mis Proyectos de GitHub con estrellas</h1>
+              <ul>
+                
+                <li v-for="repo in starredRepos" :key="repo.id">
+                  <h3 style="color: white;">{{ repo.name }}</h3>
+                   
+                   
+                   <div style="color: white;" v-if="customDescriptions[repo.name]">
+                      {{ customDescriptions[repo.name].name }} <br>
+                      {{ customDescriptions[repo.name].description }} <br>
+                      <img style="width: 400px;" :src="customDescriptions[repo.name].image" alt="">
+
+                      <div style="color: white;" v-if="customDescriptions[repo.name] && customDescriptions[repo.name].frameworks">
+                        <h3>Frameworks utilizados:</h3>
+                        
+                            <i v-for="framework in customDescriptions[repo.name].frameworks" :key="framework" :class="getIconClasses(framework)" :style="{ color: getIconColor(framework) }"></i> 
+                            {{ framework }}
+                          
+                      </div>
+                    </div>
+
+
+                  <p style="color: white;">Estrellas: {{ repo.stargazers_count }}</p>
+                </li>
+              </ul>
+            </div>
+
+            -->
+            
+
+
+            <div class="card" v-for="repo in starredRepos" :key="repo.id">
+              <div class="imagen">
+                <!-- Utiliza la propiedad de imagen del repositorio de GitHub si está definida -->
+                <img v-if="customDescriptions[repo.name]" :src="customDescriptions[repo.name].image" alt="Imagen de la tarjeta">
+                <div class="overlay">
+                  <p class="fecha">{{ customDescriptions[repo.name]?.fecha }}</p>
+
+                  <!-- Agrega el enlace a la página del repositorio de GitHub -->
+                    <a :href="customDescriptions[repo.name]?.url_repo" target="_blank" class="url">
+                      <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    
+
+                </div>
+              </div>
+
+              <div class="card-header">
+                <!-- Utiliza el nombre del repositorio como título -->
+                <h4>{{ repo.name }}</h4>
+              </div>
+
+              <div class="card-content">
+                <!-- Utiliza la descripción del repositorio si está definida -->
+                <p>{{ customDescriptions[repo.name]?.description }}</p>
+                
+
+
+                <div class="contenedor">
+                  <div class="iconosFrameworks" v-if="customDescriptions[repo.name]?.frameworks">
+                    
+                    <!-- Itera sobre los frameworks si están definidos y aplica las clases e iconos adecuados -->
+                    <i
+                      v-for="framework in customDescriptions[repo.name]?.frameworks"
+                      :key="framework"
+                      :class="getIconClasses(framework)"
+                      :style="{ color: getIconColor(framework) }"
+                    ></i>
+                    {{ framework }}
+                  </div>
+                </div>
+              </div>
+          </div>
+
+
+
+
             
         </div>
 
