@@ -1,6 +1,37 @@
 <script>
+export default {
+  data() {
+    return {
+      mostrarAlerta: false,
+      mostrarSegundaAlerta: false,
+    };
+  },
+  methods: {
+    enviarFormulario() {
+      // Muestra la primera alerta
+      this.mostrarAlerta = true;
 
+      // Oculta la primera alerta después de 2 segundos
+      setTimeout(() => {
+        this.mostrarAlerta = false;
+        
+
+        // Muestra la segunda alerta después de que se oculte la primera
+        this.mostrarSegundaAlerta = true;
+
+        // Oculta la segunda alerta después de 2 segundos
+        setTimeout(() => {
+          this.mostrarSegundaAlerta = false;
+        }, 2000); // Oculta la segunda alerta después de 2 segundos
+      }, 2000); // Oculta la primera alerta después de 2 segundos
+    },
+  },
+};
 </script>
+
+
+
+
 
 
 
@@ -15,13 +46,22 @@
 
             <div class="form">
                 <h3 class="h3Form">Envía tu mensaje</h3>
-                <form action="#" >
-                    <input id="name" type="text" placeholder="Full Name">
-                    <input id="email" type="email" placeholder="Your Email">
-                    <input id="asunto" type="text" placeholder="Asunt">
+                <form action="#" method="POST">
+                    <input id="name" type="text" placeholder="Full Name" name="name">
+                    <input id="email" type="email" placeholder="Your Email" name="email">
+                    <input id="asunto" type="text" placeholder="Asunt" name="asunto">
                     <textarea id="texto" rows="4" cols="50" placeholder="Your Message"></textarea>
-                    <component :is="'button'" class="buttonEnviar" type="submit">Enviar</component>
+                    
+                    <component :is="'button'" class="buttonEnviar" type="submit" @click.prevent="enviarFormulario">Enviar</component>
                 </form>
+                <!-- Alerta de Bootstrap -->
+                <div class="alert alert-danger" role="alert" v-if="mostrarAlerta">
+                ¡Formulario temporalmente fuera de servicio!
+                </div>
+                <!-- Segunda alerta de Bootstrap (oculta inicialmente) -->
+                <div class="alert alert-success" role="alert" v-if="mostrarSegundaAlerta">
+                Contáctame por medio de mis redes.
+                </div>
             </div>
             <div class="mediosContact">
                 <div class="iconos">
@@ -54,6 +94,25 @@
                             <p>Brayan.Garzon.Dev@gmail.com</p>
                         </div>
                     </div>
+                    
+
+                    <div class="nameIcon">
+                        <div class="iconosRedes">
+                            <a href="https://wa.link/e7gthx" target="_blank" style="text-decoration: none; color: #25d366;">
+                            <i id="whp" class="fa-brands fa-whatsapp"></i>
+                            </a>
+                            <a href="https://github.com/BrayanGarzon" target="_blank" style="text-decoration: none; color: #F7DF1E;">
+                            <i id="gith" class="fa-brands fa-github"></i>
+                            </a>
+                            <a href="https://www.facebook.com/brayan.garzon.33234/" target="_blank" style="text-decoration: none; color: #4183C4;">
+                            <i id="fcbk" class="fa-brands fa-facebook"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/brayan-garz%C3%B3n-256475209" target="_blank" style="text-decoration: none; color: #1572B6;">
+                            <i id="link" class="fa-brands fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -93,12 +152,24 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 20px;
-        display: flex;
-        
-        
-        
+        display: flex;  
     }
+    .mediosContact .nameIcon .iconosRedes{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .mediosContact .iconos .nameIcon a i{
+         font-size: 30px;
+         
+    }
+    .mediosContact .iconos .nameIcon a i:hover{
+         color: white;
+    }
+    
     .mediosContact .iconos .nameIcon .texto h6,p{
         margin: 0;
         padding: 0;
