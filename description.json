@@ -1,0 +1,9 @@
+{
+    "name": "Personal Web Site",
+    "description": "Este es mi sitio web personal, una plataforma en la que puedo compartir mi trabajo, proyectos y experiencias. Está construido utilizando una variedad de tecnologías, incluyendo Vue.js, CSS, JavaScript, PostgreSQL y Django.",
+    "image": "https://github.com/BrayanGarzon/DevOpsPageWeb/blob/main/imgWeb/imagenURL.png?raw=true",
+    "frameworks": ["JavaScript", "Html", "CSS", "Vue", "PostgreSQL", "GitHub"],
+    "url_repo": "https://github.com/BrayanGarzon/personalWebSite.git",
+    "fecha": "25/09/2023"
+  }
+  

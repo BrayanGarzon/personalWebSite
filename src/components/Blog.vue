@@ -1,5 +1,5 @@
 <script>
-import axios from 'axios';
+
 /* 
 export default {
   data() {
@@ -86,12 +86,15 @@ export default {
   }
 }
 */
+import axios from 'axios';
+
+
 export default {
   data() {
     return {
       starredRepos: [],
       customDescriptions: {},
-      framework: 'default'
+      framework: ''
     };
   
   },
@@ -102,7 +105,7 @@ export default {
           return 'fab fa-python';
         case 'Django':
           return 'fab fa-django';
-        case 'Vue.js':
+        case 'Vue':
           return 'fab fa-vuejs';
         case 'CSS':
           return 'fab fa-css3';
@@ -112,6 +115,8 @@ export default {
           return 'fas fa-database';
         case 'JavaScript':
           return 'fab fa-js';
+        case 'GitHub':
+          return 'fab fa-github';
         default:
           return 'fas fa-question';
       }
@@ -132,10 +137,15 @@ export default {
           return '#336791'; // Color para PostgreSQL
         case 'JavaScript':
           return '#F7DF1E'; // Color para JavaScript
+        case 'GitHub':
+          return '#4183C4';
         default:
           return '#000'; // Color predeterminado
       }
     },
+
+    
+
   },
  
 
@@ -150,7 +160,7 @@ export default {
           axios.get(`https://raw.githubusercontent.com/BrayanGarzon/${repo.name}/main/description.json`)
             .then(response => {
               this.customDescriptions[repo.name] = response.data; // Almacena el contenido en customDescri  ptions
-              
+              console.log(customDescriptions.data)
               
             })
             .catch(error => {
@@ -178,14 +188,6 @@ export default {
             <h2>Blogs</h2>
             <h3>Mis últimas <strong  style="color: #C70039;"> publicaciones.</strong></h3>
         </div>
-
-
-
-
-
-
-
-
         <div class="containerCards">
           <!--
             <div class="card"  v-for="publicacion in publicaciones" :key="publicacion.id" >
@@ -219,36 +221,6 @@ export default {
                   
                 </div> 
             </div>
-            
-
-            <div>
-              <h1 style="color: white;">Mis Proyectos de GitHub con estrellas</h1>
-              <ul>
-                
-                <li v-for="repo in starredRepos" :key="repo.id">
-                  <h3 style="color: white;">{{ repo.name }}</h3>
-                   
-                   
-                   <div style="color: white;" v-if="customDescriptions[repo.name]">
-                      {{ customDescriptions[repo.name].name }} <br>
-                      {{ customDescriptions[repo.name].description }} <br>
-                      <img style="width: 400px;" :src="customDescriptions[repo.name].image" alt="">
-
-                      <div style="color: white;" v-if="customDescriptions[repo.name] && customDescriptions[repo.name].frameworks">
-                        <h3>Frameworks utilizados:</h3>
-                        
-                            <i v-for="framework in customDescriptions[repo.name].frameworks" :key="framework" :class="getIconClasses(framework)" :style="{ color: getIconColor(framework) }"></i> 
-                            {{ framework }}
-                          
-                      </div>
-                    </div>
-
-
-                  <p style="color: white;">Estrellas: {{ repo.stargazers_count }}</p>
-                </li>
-              </ul>
-            </div>
-
             -->
             
 
@@ -262,7 +234,7 @@ export default {
 
                   <!-- Agrega el enlace a la página del repositorio de GitHub -->
                     <a :href="customDescriptions[repo.name]?.url_repo" target="_blank" class="url">
-                      <i class="fas fa-external-link-alt"></i>
+                      <i v-if="customDescriptions[repo.name]?.url_repo" class="fas fa-external-link-alt"></i>
                     </a>
                     
 
@@ -353,7 +325,7 @@ export default {
 /* Estilo base para la tarjeta */
     .card {
         
-        height: 420px;
+        height: 480px;
         background-color: #191919;
         border-radius: 10px;
         overflow: hidden;
@@ -363,7 +335,7 @@ export default {
         justify-content: center;
         flex-direction: column;
         justify-self: center;
-        width: calc(30% - 20px); /* Para mostrar 3 tarjetas por fila con un espacio de 20px entre ellas */
+        width: calc(30% - 5px); /* Para mostrar 3 tarjetas por fila con un espacio de 20px entre ellas */
         margin-bottom: 20px; /* Espacio entre filas de tarjetas */
         
     }
@@ -401,8 +373,12 @@ export default {
       margin: 0;
       padding: 0;
       text-decoration: none;
-      color: white;
+      color: rgb(34, 31, 241);
       margin-right: 10px;
+    }
+    .overlay .url:hover{
+      color: #C70039;
+      transition: all 500ms ease;
     }
     .card .imagen .overlay .fecha, .categoria{
       background-color: #C70039;
