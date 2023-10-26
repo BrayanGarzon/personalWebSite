@@ -51,7 +51,7 @@
                         <img src="../assets/img/icon-email.png" alt="">
                         <div class="texto">
                             <h6>Telefono</h6>
-                            <p>Correo@gamil.com</p>
+                            <p>Brayan.Garzon.Dev@gmail.com</p>
                         </div>
                     </div>
                 </div>
