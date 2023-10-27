@@ -94,7 +94,8 @@ export default {
     return {
       starredRepos: [],
       customDescriptions: {},
-      framework: ''
+      framework: '',
+      sortedRepos: [], //orden de las cards
     };
   
   },
@@ -150,28 +151,40 @@ export default {
  
 
   created() {
-    // Realiza una llamada a la API de GitHub para obtener tus repositorios
-    axios.get('https://api.github.com/users/BrayanGarzon/repos')
-      .then(response => {
-        this.starredRepos = response.data.filter(repo => repo.stargazers_count > 0);
+  axios.get('https://api.github.com/users/BrayanGarzon/repos')
+    .then(response => {
+      this.starredRepos = response.data.filter(repo => repo.stargazers_count > 0);
 
-        // Para cada repositorio, obtén el contenido del archivo description.json
-        this.starredRepos.forEach(repo => {
-          axios.get(`https://raw.githubusercontent.com/BrayanGarzon/${repo.name}/main/description.json`)
-            .then(response => {
-              this.customDescriptions[repo.name] = response.data; // Almacena el contenido en customDescri  ptions
-              console.log(customDescriptions.data)
-              
-            })
-            .catch(error => {
-              console.error('Error al obtener description.json de', repo.name, error, 'no have file description.js');
-            });
-        });
-      })
-      .catch(error => {
-        console.error('Error al obtener repositorios de GitHub', error);
+      // Para cada repositorio, obtén el contenido del archivo description.json
+      const fetchDescriptionsPromises = this.starredRepos.map(repo => {
+        return axios.get(`https://raw.githubusercontent.com/BrayanGarzon/${repo.name}/main/description.json`)
+          .then(response => {
+            this.customDescriptions[repo.name] = response.data;
+            return repo; // Mantén el repositorio para que podamos ordenarlos después
+          })
+          .catch(error => {
+            console.error('Error al obtener description.json de', repo.name, error, 'no have file description.js');
+          });
       });
-  },
+
+      // Una vez que todas las descripciones se han cargado, realiza la transformación y ordena los repositorios
+      Promise.all(fetchDescriptionsPromises)
+        .then(reposWithDescriptions => {
+          this.sortedRepos = reposWithDescriptions.sort((a, b) => {
+            // Transforma las fechas al formato 'DD/MM/AAAA' a objetos Date para comparar
+            const dateA = new Date(this.customDescriptions[a.name]?.fecha.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3'));
+            const dateB = new Date(this.customDescriptions[b.name]?.fecha.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3'));
+
+            // Ordena los repositorios por fecha en orden descendente
+            return dateB - dateA;
+          });
+        });
+    })
+    .catch(error => {
+      console.error('Error al obtener repositorios de GitHub', error);
+    });
+},
+
 };
 
 
@@ -225,7 +238,7 @@ export default {
             
 
 
-            <div class="card" v-for="repo in starredRepos" :key="repo.id">
+            <div class="card" v-for="repo in sortedRepos" :key="repo.id">
               <div class="imagen">
                 <!-- Utiliza la propiedad de imagen del repositorio de GitHub si está definida -->
                 <img v-if="customDescriptions[repo.name]" :src="customDescriptions[repo.name].image" alt="Imagen de la tarjeta">
