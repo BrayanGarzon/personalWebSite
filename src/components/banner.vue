@@ -19,4 +19,7 @@
         align-items: center;
         justify-content: center;
     }
+    #banner p{
+        margin: 0;
+    }
 </style>
