@@ -27,7 +27,7 @@ export default {
                 
                 <div class="position">
                     
-                    <a href="https://drive.google.com/file/d/1gB09DFWieIduL8INCVbGVhohzgBQIsj8/view?usp=sharing" class="svg-wrapper" target="_blank" download style="width: 200px;">
+                    <a href="https://drive.google.com/file/d/1pYCAZkr1fpGuYCULPXIJrdSSWRZeHovL/view?usp=drive_link" class="svg-wrapper" target="_blank" download style="width: 200px;">
                     <svg height="40" width="150">
                         <rect id="shape" height="40" width="150" />
                         <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="button-text">
@@ -40,7 +40,7 @@ export default {
                 
             </div>
             <div class="imagen">
-                <img src="../assets/img/about.jpg" alt="" class="image">
+                <img src="../assets/img/aboutImage.png" alt="" class="image">
             </div>
         </div>
 
