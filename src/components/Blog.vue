@@ -1,91 +1,4 @@
 <script>
-
-/* 
-export default {
-  data() {
-    return {
-      publicaciones: []
-    }
-  },
-  methods: {
-      // Función para asignar clases de iconos según los framework_nombre
-    getIconClasses(frameworkNombre) {
-      switch (frameworkNombre) {
-        case 'Python':
-          return 'fab fa-python'; // Clase del icono para Python
-        case 'Django':
-          return 'fab fa-django'; // Clase del icono para Django
-        case 'Vue.js':
-          return 'fab fa-vuejs'; // Clase del icono para Vue.js
-        case 'CSS':
-          return 'fab fa-css3';
-        case 'Html':
-          return 'fab fa-html5';
-        case 'PostgreSQL':
-          return 'fas fa-database';
-        case 'JavaScript':
-          return 'fab fa-js';
-        // Agrega más casos según sea necesario para otros frameworks
-        default:
-          return 'fas fa-question'; // Clase del icono por defecto o desconocido
-      }
-    },
-    getIconColor(frameworkNombre) {
-      switch (frameworkNombre) {
-        case 'Python':
-          return '#3572A5'; // Color para Python
-        case 'Django':
-          return '#0C4B33'; // Color para Django
-        case 'Vue.js':
-          return '#42b883'; // Color para Vue.js
-        case 'CSS':
-          return '#1572B6'; // Color para CSS
-        case 'Html':
-          return '#E34F26'; // Color para HTML
-        case 'PostgreSQL':
-          return '#336791'; // Color para PostgreSQL
-        case 'JavaScript':
-          return '#F7DF1E'; // Color para JavaScript
-        default:
-          return '#000'; // Color predeterminado
-      }
-    },
- 
-    formatFecha(fecha) {
-      
-      const date = new Date(fecha);
-      const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
-      const dia = date.getDate();
-      const mes = meses[date.getMonth()];
-      const año = date.getFullYear().toString().slice(-2);
-      return `${dia+1} ${mes}, ${año}`;
-    },
-    getPublicacion() {
-      const path = 'https://django-backend-app.onrender.com/myApp/v1.0/Publicacion/';
-      axios.get(path)
-        .then((response) => {
-          // Formatea la fecha antes de asignarla a publicaciones
-          this.publicaciones = response.data.map((item) => ({
-            ...item,
-            fechaPublicacn: this.formatFecha(item.fechaPublicacn)
-          }));
-           // Ordena las publicaciones por fecha (de la más reciente a la más antigua)
-           this.publicaciones.sort((a, b) => {
-            const dateA = new Date(a.fechaPublicacn);
-            const dateB = new Date(b.fechaPublicacn);
-            return dateB - dateA;
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  },
-  created() {
-    this.getPublicacion();
-  }
-}
-*/
 import axios from 'axios';
 
 
@@ -202,39 +115,7 @@ export default {
             <h3>Mis últimas <strong  style="color: #C70039;"> publicaciones.</strong></h3>
         </div>
         <div class="containerCards">
-          <!--
-            <div class="card"  v-for="publicacion in publicaciones" :key="publicacion.id" >
-                <div class="imagen">
-                    <img :src="publicacion.imagen" alt="Imagen de la tarjeta">
-                    <div class="overlay">
-                        <p class="fecha">{{ publicacion.fechaPublicacn }}</p>
-                        <a v-if="publicacion.url" :href="publicacion.url" target="_blank" class="url">
-                          <i class="fas fa-external-link-alt"></i>
-                        </a>
-                        
-                    </div>
-                </div>
-                
-                <div class="card-header">
-                    <h4>{{ publicacion.titulo }}</h4>
-                </div>
-
-                
-                <div class="card-content">
-                  <p>{{ publicacion.descripcion }}</p>
-
-                  <div class="contenedor">
-                    <div class="iconosFrameworks" v-for="frameworkNombre in publicacion.frameworks_nombre" :key="frameworkNombre">
       
-                      
-                      <i :class="getIconClasses(frameworkNombre)" :style="{ color: getIconColor(frameworkNombre) }"></i>
-
-                    </div>
-                  </div>
-                  
-                </div> 
-            </div>
-            -->
             
 
 
@@ -245,10 +126,16 @@ export default {
                 <div class="overlay">
                   <p class="fecha">{{ customDescriptions[repo.name]?.fecha }}</p>
 
-                  <!-- Agrega el enlace a la página del repositorio de GitHub -->
-                    <a :href="customDescriptions[repo.name]?.url_repo" target="_blank" class="url">
-                      <i v-if="customDescriptions[repo.name]?.url_repo" class="fas fa-external-link-alt"></i>
+                  <div class="url">
+                    <!-- Agrega el enlace a la página del repositorio de GitHub -->
+                    <a :href="customDescriptions[repo.name]?.url_repo" target="_blank" >
+                      <i v-if="customDescriptions[repo.name]?.url_repo" class="fab fa-github"></i>
                     </a>
+                    <a :href="customDescriptions[repo.name]?.url_live" target="_blank" >
+                      <i v-if="customDescriptions[repo.name]?.url_live" class="fas fa-external-link-alt"></i>
+                    </a>
+                  </div>
+                  
                     
 
                 </div>
@@ -389,7 +276,11 @@ export default {
       color: rgb(34, 31, 241);
       margin-right: 10px;
     }
-    .overlay .url:hover{
+   
+    .overlay a{
+      margin: 5px;
+    }
+    .overlay a:hover{
       color: #C70039;
       transition: all 500ms ease;
     }
