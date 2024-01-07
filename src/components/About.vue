@@ -82,36 +82,44 @@ export default {
 
             <div class="iconosHabilidades">
                 <div class="iconosContainer">
-                    <i class="fa-brands fa-python fa-beat-fade"></i>
-                    <p>Python</p>
+                    <i class="fa-brands fa-python"></i>
                 </div>
                 <div class="iconosContainer">
-                    <i class="fa-brands fa-vuejs fa-beat-fade"></i>
-                    <p>Vue Js</p>
+                    <img src="../../public/icons/c++.png" alt="">
+                </div>
+
+                <div class="iconosContainer">
+                    <i class="fa-brands fa-vuejs"></i>
+                </div>
+                
+                <div class="iconosContainer">
+                    <i class="fa-brands fa-html5"></i>
+                </div>
+
+                <div class="iconosContainer">
+                    <i class="fa-brands fa-css3-alt"></i>
+                </div>
+
+                <div class="iconosContainer">
+                    <i class="fa-brands fa-js"></i>
+                </div>
+
+                <div class="iconosContainer">
+                    <img src="../../public/icons/adobe-photoshop.png" alt="">
+                </div>
+
+                <div class="iconosContainer">
+                    <img src="../../public/icons/ilustrador-adobe.png" alt="">
+                </div>
+
+                <div class="iconosContainer">
+                    <img src="../../public/icons/edicion-de-video.png" alt="">
                 </div>
                 <div class="iconosContainer">
-                    <i class="fa-brands fa-html5 fa-beat-fade"></i>
-                    <p>Html</p>
+                    <i class="fa-brands fa-docker"></i>
                 </div>
                 <div class="iconosContainer">
-                    <i class="fa-brands fa-css3-alt fa-beat-fade"></i>
-                    <p>Css</p>
-                </div>
-                <div class="iconosContainer">
-                    <i class="fa-brands fa-js fa-beat-fade"></i>
-                    <p>JavaScript</p>
-                </div>
-                <div class="iconosContainer">
-                    <i class="fa-regular fa-image fa-beat-fade"></i>
-                    <p>Photoshop</p>
-                </div>
-                <div class="iconosContainer">
-                    <i class="fa-solid fa-bezier-curve fa-beat-fade"></i>
-                    <p>Illustrator</p>
-                </div>
-                <div class="iconosContainer">
-                    <i class="fa-solid fa-video fa-beat-fade"></i>
-                    <p>Edición</p>
+                    <i class="fa-brands fa-square-github"></i>
                 </div>
                 
             </div>
@@ -381,29 +389,28 @@ export default {
 .skills .iconosHabilidades {
     width: 100%;
     display: flex;
-    flex-wrap: wrap; /* Permitir que los íconos fluyan en varias filas */
-    justify-content: center; /* Centrar horizontalmente los íconos */
-    align-items: flex-start; /* Alineación superior para evitar el centrado vertical */
+    flex-wrap: wrap;
+    justify-content: center; 
+    align-items: flex-start; 
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .skills .iconosHabilidades .iconosContainer {
-    width: calc(15% - 50px); /* Ancho fijo de cada contenedor, 5 en una fila */
-    height: 150px;
-    background-color: #191919;
+    width: calc(20% - 40px); /* Ancho fijo de cada contenedor, 5 en una fila */
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 20px; /* Espaciado entre contenedores */
-    border-radius: 30px;
-    border: 2px outset #C70039;
-    flex-direction: column;
-    overflow: hidden;
 }
 
 .skills .iconosHabilidades .iconosContainer i {
-    color: white;
-    font-size: 70px;
+    color: #252525d3;
+    font-size: 100px;
+}
+.skills .iconosHabilidades .iconosContainer img {
+    color: #252525d3;
+    width: 100px;
 }
 
 .skills .iconosHabilidades .iconosContainer p {
@@ -486,13 +493,13 @@ export default {
   }
 
   .skills .iconosHabilidades .iconosContainer {
-    width: calc(45% - 30px);
-    height: 120px;
+    width: calc(50% - 40px);
+    
     margin: 10px;
   }
 
   .skills .iconosHabilidades .iconosContainer i {
-    font-size: 50px;
+    font-size: 100px;
   }
 
   .skills .iconosHabilidades .iconosContainer p {
