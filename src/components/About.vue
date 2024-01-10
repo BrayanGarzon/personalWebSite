@@ -83,43 +83,54 @@ export default {
             <div class="iconosHabilidades">
                 <div class="iconosContainer">
                     <i class="fa-brands fa-python"></i>
+                    <p>Python</p>
                 </div>
                 <div class="iconosContainer">
                     <img src="../../public/icons/c++.png" alt="">
+                    <p>C++</p>
                 </div>
 
                 <div class="iconosContainer">
                     <i class="fa-brands fa-vuejs"></i>
+                    <p>Vue.js</p>
                 </div>
                 
                 <div class="iconosContainer">
                     <i class="fa-brands fa-html5"></i>
+                    <p>Html</p>
                 </div>
 
                 <div class="iconosContainer">
                     <i class="fa-brands fa-css3-alt"></i>
+                    <p>CSS</p>
                 </div>
 
                 <div class="iconosContainer">
                     <i class="fa-brands fa-js"></i>
+                    <p>JavaScript</p>
                 </div>
 
                 <div class="iconosContainer">
                     <img src="../../public/icons/adobe-photoshop.png" alt="">
+                    <p>Photoshop</p>
                 </div>
 
                 <div class="iconosContainer">
                     <img src="../../public/icons/ilustrador-adobe.png" alt="">
+                    <p>Illustrator</p>
                 </div>
 
                 <div class="iconosContainer">
                     <img src="../../public/icons/edicion-de-video.png" alt="">
+                    <p>Video - Edit</p>
                 </div>
                 <div class="iconosContainer">
                     <i class="fa-brands fa-docker"></i>
+                    <p>Docker</p>
                 </div>
                 <div class="iconosContainer">
                     <i class="fa-brands fa-square-github"></i>
+                    <p>Git</p>
                 </div>
                 
             </div>
@@ -402,14 +413,14 @@ export default {
     justify-content: center;
     align-items: center;
     margin: 20px; /* Espaciado entre contenedores */
+    flex-direction: column;
 }
 
 .skills .iconosHabilidades .iconosContainer i {
-    color: #252525d3;
+    color: white;
     font-size: 100px;
 }
 .skills .iconosHabilidades .iconosContainer img {
-    color: #252525d3;
     width: 100px;
 }
 

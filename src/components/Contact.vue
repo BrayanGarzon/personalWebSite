@@ -46,7 +46,7 @@ export default {
 
             <div class="form">
                 <h3 class="h3Form">Envía tu mensaje</h3>
-                <form action="#" method="POST">
+                <form action="https://formspree.io/your-email@example.com" method="POST">
                     <input id="name" type="text" placeholder="Full Name" name="name">
                     <input id="email" type="email" placeholder="Your Email" name="email">
                     <input id="asunto" type="text" placeholder="Asunt" name="asunto">
