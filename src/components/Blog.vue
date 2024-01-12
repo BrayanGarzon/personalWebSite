@@ -128,6 +128,11 @@ export default {
 
                   <div class="url">
                     <!-- Agrega el enlace a la página del repositorio de GitHub -->
+                    <!-- Agrega el enlace a la página del repositorio de GitHub 
+                    <div class="desarrollo" v-if="customDescriptions[repo.name]?.desarrollo">
+                      <p v-if="customDescriptions[repo.name]?.desarrollo">En Desarrollo</p>
+                    </div>
+                    -->
                     <a :href="customDescriptions[repo.name]?.url_repo" target="_blank" >
                       <i v-if="customDescriptions[repo.name]?.url_repo" class="fab fa-github"></i>
                     </a>
@@ -275,11 +280,30 @@ export default {
       text-decoration: none;
       color: rgb(34, 31, 241);
       margin-right: 10px;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .overlay .url .desarrollo{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 30px;
+      border-radius: px;
+      background-color: #00c71e;
+    }
+    .overlay .url .desarrollo p{
+      margin: 0;
+      padding: 0;
+      color: white;
     }
    
     .overlay a{
       margin: 5px;
+      text-decoration: none;
     }
+
     .overlay a:hover{
       color: #C70039;
       transition: all 500ms ease;
